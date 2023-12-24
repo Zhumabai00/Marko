@@ -95,34 +95,4 @@
 .contactForm button:hover {
   background: #6264fc;
 }
-.inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-bottom: 48px;
-}
-.label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.label > p {
-  color: #333;
-  font-family: "TT Travels", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-}
-.label > input {
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  background: rgba(0, 0, 0, 0.04);
-  outline: none;
-  padding: 12px;
 
-  color: rgba(0, 0, 0, 0.48);
-  font-family: "TT Travels", sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-}

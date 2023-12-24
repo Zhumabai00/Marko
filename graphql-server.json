@@ -1,0 +1,26 @@
+{
+	"todo": [
+		{
+			"id": 1,
+			"title": "Lorem Ipsum",
+			"status": "open"
+		},
+		{
+			"id": 2,
+			"title": "Sic Dolor amet",
+			"status": "open"
+		}
+	],
+	"users": [
+		{
+			"id": 123,
+			"tel": "2345674",
+			"email": "webstudio.fractal@example.com"
+		},
+		{
+			"id": 1234,
+			"tel": "2345678",
+			"email": "webstudio.fractal@example.com2"
+		}
+	]
+}

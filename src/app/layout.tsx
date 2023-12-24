@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/header'
-
+import StoreProvider from '@/store/StoreProvider'
+import { ApolloProvider } from '@apollo/client'
+import { ApolloWrapper } from '@/apollos/client'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -13,11 +15,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // const client = createApolloClient();
   return (
     <html lang="en">
       <body className={''}>
-        <Header />
-        {children}
+        <div className="App">
+          <StoreProvider>
+            <ApolloWrapper>
+              <Header />
+              {children}
+            </ApolloWrapper>
+          </StoreProvider>
+        </div>
       </body>
     </html>
   )

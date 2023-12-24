@@ -1,0 +1,11 @@
+.select {
+	color: #333;
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+.select div {
+	outline: none;
+	border-color: hsl(0, 0%, 80%);
+}
