@@ -34,13 +34,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  color: rgba(0, 0, 0, 0.48);
+  font-family: "TT Travels", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 .label > p {
   color: #333;
-  font-family: "TT Travels", sans-serif;
-  font-size: 14px;
   font-weight: 500;
-  line-height: 20px;
 }
 .label > input {
   border-radius: 4px;
@@ -48,10 +51,20 @@ body {
   background: rgba(0, 0, 0, 0.04);
   outline: none;
   padding: 12px;
-
+}
+.checkbox {
   color: rgba(0, 0, 0, 0.48);
   font-family: "TT Travels", sans-serif;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+}
+.checkbox > p {
+  color: #333;
+  font-weight: 500;
+}
+.checkbox > label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }

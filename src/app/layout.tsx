@@ -15,7 +15,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // const client = createApolloClient();
+
   return (
     <html lang="en">
       <body className={''}>

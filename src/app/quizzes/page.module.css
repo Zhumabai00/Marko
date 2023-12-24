@@ -1,13 +1,121 @@
+.user {
+	width: 900px;
+	height: 700px;
+	padding: 25px;
+	background-color: #fff;
+	position: relative;
+	border-radius: 12px 12px 0px 0px;
+	margin-top: 24px;
+}
+
+.userHead {
+	margin: 0 auto 25px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.headContent {
+	display: inline-flex;
+	align-items: center;
+	gap: 25px;
+	padding-bottom: 25px;
+}
+.headAvatar {
+	display: flex;
+	width: 80px;
+	height: 80px;
+	border-radius: 100%;
+	background: #d5e4f7;
+	padding: 14px 13px;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	cursor: pointer;
+
+	color: #212830;
+	text-align: center;
+	font-family: "TT Travels", sans-serif;
+	font-size: 36px;
+	font-weight: 300;
+	line-height: 52px;
+}
+.headName {
+	display: inline-flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 8px;
+}
+.headName div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.headName h3 {
+	color: #333;
+	font-family: "TT Travels", sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 26px;
+}
+.headName div > a {
+	color: #5558fa;
+	font-family: TT Travels;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 16px;
+	text-decoration-line: none;
+
+	display: flex;
+	align-items: center;
+	margin-right: 15px;
+}
+.headName div > a:hover {
+	text-decoration-line: underline;
+}
+.headName div > a img {
+	margin-right: 4px;
+}
+
+/*  ContactForm */
+
+.contactForm {
+	max-width: 300px;
+}
+.buttons {
+	display: flex;
+	justify-content: space-between;
+}
+.buttons button {
+	border-radius: 4px;
+	background: #5558fa;
+	padding: 12px 16px;
+	border: none;
+	cursor: pointer;
+	border: 1.5px solid #5558fa;
+	transition: all 0.3s ease-in-out;
+
+	color: #fff;
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+}
+.buttons button:hover {
+	background: #fff;
+	color: #5558fa;
+}
+
+/* QUIZZES */
+
 .quiz {
 	width: 900px;
 	height: 821px;
 	background-color: #fff;
 	border-radius: 24px;
-	padding: 62px 110px 0;
+	padding: 62px 110px 20px;
+	margin-top: 24px;
+	overflow-x: hidden;
 }
-.quiz > form {
-	max-width: 300px;
-}
+
 .progress {
 	height: 10px;
 	border-radius: 8px;
@@ -70,4 +178,124 @@
 .dot:nth-child(3)::after {
 	content: "3";
 	padding-left: 8px;
+}
+
+.select {
+	color: #333;
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+.select div {
+	outline: none;
+	border-color: hsl(0, 0%, 80%);
+}
+
+/* Inputs styles */
+
+.inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	margin-bottom: 48px;
+}
+.label {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	color: rgba(0, 0, 0, 0.48);
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+.label > p {
+	color: #333;
+	font-weight: 500;
+}
+.label > input,
+.label > textarea {
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.16);
+	background: #fff;
+	outline: none;
+	padding: 12px;
+}
+.label > textarea {
+	resize: vertical;
+	height: 84px;
+}
+
+.checkbox {
+	color: rgba(0, 0, 0, 0.48);
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+.checkbox > p {
+	color: #333;
+	font-weight: 500;
+}
+.checkbox > label {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+.advantages {
+}
+.advantages {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	color: rgba(0, 0, 0, 0.48);
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+.advantages > p {
+	color: #333;
+	font-weight: 500;
+}
+.advantages > div {
+	display: flex;
+	align-items: center;
+	column-gap: 16px;
+}
+.advantages > div > input {
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.16);
+	background: #fff;
+	outline: none;
+	padding: 12px;
+	flex: 1 1 auto;
+}
+/* .advantages > div > button {
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.16);
+	background: rgba(0, 0, 0, 0.04);
+	outline: none;
+	padding: 12px;
+} */
+.advantages > button {
+	border-radius: 4px;
+	background: #5558fa;
+	padding: 12px 16px;
+	cursor: pointer;
+	border: 1.5px solid #5558fa;
+	transition: all 0.3s ease-in-out;
+	width: min-content;
+
+	color: #fff;
+	font-size: 26px;
+	line-height: 20px;
+}
+
+.advantages button:hover {
+	background: #fff;
+	color: #5558fa;
 }

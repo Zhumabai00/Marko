@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import telegram from '../assets/telegram.svg'
+import telegram from '@/assets/telegram.svg'
 import Link from 'next/link'
-import styles from '../app/page.module.css'
+import styles from '../app/quizzes/page.module.css'
 
 const User = () => {
 	return (
