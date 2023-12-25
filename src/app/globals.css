@@ -19,6 +19,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
   background-color: #6a5be2;
 }
 

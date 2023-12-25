@@ -10,10 +10,12 @@ export const GET_USERS = gql`
 	}
 `;
 export const CREATE_USER = gql`
-	mutation createUser($tel: String!, $email: String!) {
-		createUser(tel: $tel, email: $email) {
-			tel
-			email
+	mutation createUser($about: String!, $advantages: JSON!, $contacts: JSON!, $personalData: JSON!) {
+		createUser(about: $about, advantages: $advantages, contacts: $contacts, personalData: $personalData) {
+			about
+			advantages
+			contacts
+			personalData
 		}
 	}
 `;

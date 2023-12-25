@@ -14,7 +14,7 @@ interface MyForm {
 	sex: { value: string; label: string } | string;
 }
 interface IPerson {
-	personalData: MyForm
+	personalData: MyForm | string
 }
 
 const Quiz1 = () => {

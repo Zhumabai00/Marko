@@ -1,11 +1,8 @@
+import { InputField } from '@/models/IForm';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface InputField {
-	id: number;
-	value: string;
-}
 
-interface FormState {
+export interface FormState {
 	inputFields: InputField[];
 }
 

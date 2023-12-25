@@ -1,26 +1,62 @@
 {
-	"todo": [
-		{
-			"id": 1,
-			"title": "Lorem Ipsum",
-			"status": "open"
-		},
-		{
-			"id": 2,
-			"title": "Sic Dolor amet",
-			"status": "open"
-		}
-	],
 	"users": [
 		{
-			"id": 123,
-			"tel": "2345674",
-			"email": "webstudio.fractal@example.com"
+			"about": "Anoutds",
+			"advantages": {
+				"checkbox": [
+					"on",
+					"on"
+				],
+				"inputs": [
+					{
+						"id": 1,
+						"value": "value"
+					}
+				],
+				"radio": "3"
+			},
+			"contacts": {
+				"email": "webstudio.fractal@example.com",
+				"tel": "234567tel"
+			},
+			"personalData": {
+				"fullname": "Asanaalyev",
+				"name": "name",
+				"nickName": "nick",
+				"sex": {
+					"label": "man",
+					"value": "man"
+				}
+			}
 		},
 		{
-			"id": 1234,
-			"tel": "2345678",
-			"email": "webstudio.fractal@example.com2"
+			"about": "Anoutds",
+			"advantages": {
+				"checkbox": [
+					"on",
+					"on"
+				],
+				"inputs": [
+					{
+						"id": 1,
+						"value": "value"
+					}
+				],
+				"radio": "3"
+			},
+			"contacts": {
+				"email": "webstudio.fractal@example.com",
+				"tel": "234567tel"
+			},
+			"personalData": {
+				"fullname": "Asanaalyev",
+				"name": "name",
+				"nickName": "nick",
+				"sex": {
+					"label": "man",
+					"value": "man"
+				}
+			}
 		}
 	]
 }

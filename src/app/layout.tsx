@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Header from '@/components/header'
 import StoreProvider from '@/store/StoreProvider'
-import { ApolloProvider } from '@apollo/client'
 import { ApolloWrapper } from '@/apollos/client'
 
 export const metadata: Metadata = {
@@ -22,7 +20,6 @@ export default function RootLayout({
         <div className="App">
           <StoreProvider>
             <ApolloWrapper>
-              <Header />
               {children}
             </ApolloWrapper>
           </StoreProvider>

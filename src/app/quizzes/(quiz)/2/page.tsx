@@ -8,16 +8,11 @@ import basket from '@/assets/basket.svg'
 import { Buttons } from '@/components/Buttons'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { addInputField, removeInputField, setFormData, updateInputValue } from '@/store/reducers'
+import { IAdvan } from '@/models/IForm'
 
-interface IAdvan {
-	checkbox: string
-	radio: string
-	inputs: { id: number; value: string }[];
-	sex: { value: string; label: string } | string;
-}
 
 interface FormData {
-	advantages: IAdvan
+	advantages: IAdvan | string
 	inputFields: { id: number; value: string }[];
 }
 
@@ -26,24 +21,15 @@ const Quiz2 = () => {
 	const dispatch = useAppDispatch()
 	const formData = useAppSelector((state) => state.formReducer)
 	const inputData = useAppSelector((state) => state.inputReducer)
-	console.log(formData);
 
 	const router = useRouter();
 	const {
-		control,
 		handleSubmit,
 		register,
-		setValue,
-		watch
 	} = useForm<FormData>({
 		defaultValues: { advantages: formData.advantages },
 	});
-	// const { fields } = useFieldArray({ control, name: 'inputFields' });
 
-	// const { fields, append, remove } = useFieldArray({
-	// 	control,
-	// 	name: 'inputFields',
-	// });
 	const handleAddField = () => {
 		dispatch(addInputField());
 	};
@@ -59,6 +45,7 @@ const Quiz2 = () => {
 	const submit: SubmitHandler<FormData> = async (data) => {
 		router.push('/quizzes/3')
 		dispatch(setFormData(data))
+
 	}
 
 	return (

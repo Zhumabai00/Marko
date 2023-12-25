@@ -295,3 +295,85 @@
 	background: #fff;
 	color: #5558fa;
 }
+
+/* MODAL */
+
+.modalBack {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.16);
+	transition: all 0.3s ease-in-out;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.modal,
+.modalError {
+	display: flex;
+	width: 460px;
+	padding: 32px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: 0px 8px 32px 0px rgba(0, 0, 0, 0.08);
+}
+
+.modal > h1,
+.modalError > h1 {
+	color: #333;
+	text-align: center;
+	margin: auto;
+	font-family: "TT Travels", sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 26px;
+}
+.modal > div,
+.modalError > div {
+	display: flex;
+	padding: 26px 0px;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+	width: 100%;
+}
+
+.modal > button,
+.modalError > button {
+	border-radius: 4px;
+	background: #5558fa;
+	padding: 12px 16px;
+	border: none;
+	cursor: pointer;
+	border: 1.5px solid #5558fa;
+	transition: all 0.3s ease-in-out;
+	margin: auto;
+
+	color: #fff;
+	font-family: "TT Travels", sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+}
+.modal > button:hover,
+.modalError > button:hover {
+	background: #fff;
+	color: #5558fa;
+}
+
+.modalError {
+}
+.modalError > h1 {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
+}

@@ -22,7 +22,7 @@ const User = () => {
 							<Image src={telegram} alt='Telegram' />
 							GitHub
 						</Link>
-						<Link href='https://t.me/Zhumabai00'>
+						<Link href='https://6516cbad050a3a78d8840ffe--ornate-stroopwafel-8931c6.netlify.app/'>
 							<Image src={telegram} alt='Telegram' />
 							Резюме
 						</Link>

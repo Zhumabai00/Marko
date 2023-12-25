@@ -9,19 +9,17 @@ import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
 import { useRouter, usePathname } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { setFormData } from '@/store/reducers/formSlice'
+import { IContact } from '@/models/IForm'
 
 interface MyForm {
-	contacts: {
-		tel: string
-		email: string
-	}
+	contacts: IContact | string
 }
 
 const ContactForm = () => {
 	const dispatch = useAppDispatch()
 	const formData = useAppSelector((state) => state.formReducer)
 	const router = useRouter();
-	const { register, handleSubmit } = useForm<MyForm>({ defaultValues: { contacts: formData.contacts } })
+	const { register, handleSubmit, reset } = useForm<MyForm>({ defaultValues: { contacts: formData.contacts } })
 
 	// const { data } = useSuspenseQuery<TodoList>(GET_USERS, {
 	// 	fetchPolicy: "cache-first",
@@ -31,23 +29,9 @@ const ContactForm = () => {
 
 	const submit: SubmitHandler<MyForm> = async (data) => {
 		dispatch(setFormData(data))
-		console.log(data);
-		try {
-			await createUser({
-				variables: {
-					tel: data.contacts.tel,
-					email: data.contacts.email,
-				},
-			})
-			console.log('User created successfully!');
-		} catch (err) {
-			if (err instanceof ApolloError) {
-				console.error('Apollo Error:', err.message);
-			} else {
-				console.error('Unknown Error:', err);
-			}
-		}
 		router.push('/quizzes/1')
+
+		reset();
 	}
 
 	return (
@@ -56,7 +40,7 @@ const ContactForm = () => {
 				<div className={styles.inputs}>
 					<div className={styles.label}>
 						<p>Номер телефона</p>
-						<input {...register('contacts.tel' as const, { required: true })} value={formData.contacts.tel} defaultValue={formData.contacts.tel} placeholder='+7 999 999-99-99' type="text" />
+						<input {...register('contacts.tel' as const, { required: true })} defaultValue={formData.contacts.tel} placeholder='+7 999 999-99-99' type="text" />
 					</div>
 					<div className={styles.label}>
 						<p>Email</p>
