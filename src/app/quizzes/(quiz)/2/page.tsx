@@ -6,38 +6,59 @@ import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import basket from '@/assets/basket.svg'
 import { Buttons } from '@/components/Buttons'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { addInputField, removeInputField, setFormData, updateInputValue } from '@/store/reducers'
 
-interface FormData {
-	advantages: string
-	email: string
+interface IAdvan {
 	checkbox: string
 	radio: string
+	inputs: { id: number; value: string }[];
 	sex: { value: string; label: string } | string;
+}
+
+interface FormData {
+	advantages: IAdvan
 	inputFields: { id: number; value: string }[];
 }
 
 
 const Quiz2 = () => {
+	const dispatch = useAppDispatch()
+	const formData = useAppSelector((state) => state.formReducer)
+	const inputData = useAppSelector((state) => state.inputReducer)
+	console.log(formData);
 
 	const router = useRouter();
-	// const { register, handleSubmit } = useForm<MyForm>({ defaultValues: {} })
 	const {
 		control,
 		handleSubmit,
 		register,
+		setValue,
+		watch
 	} = useForm<FormData>({
-		defaultValues: { inputFields: [{ id: 1, value: '' }] },
+		defaultValues: { advantages: formData.advantages },
 	});
+	// const { fields } = useFieldArray({ control, name: 'inputFields' });
 
-	const { fields, append, remove } = useFieldArray({
-		control,
-		name: 'inputFields',
-	});
+	// const { fields, append, remove } = useFieldArray({
+	// 	control,
+	// 	name: 'inputFields',
+	// });
+	const handleAddField = () => {
+		dispatch(addInputField());
+	};
+
+	const handleRemoveField = (id: number) => {
+		dispatch(removeInputField(id));
+	};
+
+	const handleInputChange = (id: number, value: string) => {
+		dispatch(updateInputValue({ id, value }));
+	};
 
 	const submit: SubmitHandler<FormData> = async (data) => {
 		router.push('/quizzes/3')
-		console.log(data);
-
+		dispatch(setFormData(data))
 	}
 
 	return (
@@ -46,48 +67,49 @@ const Quiz2 = () => {
 				<div className={styles.inputs}>
 					<div className={styles.advantages}>
 						<p>Преимущества</p>
-						{fields.map((field, index) => (
+						{inputData.inputFields.map((field, index) => (
 							<div key={field.id}>
 								<input
-									{...register(`inputFields.${index}.value` as const)}
+									{...register(`advantages.inputs.${index}.value` as const)}
 									type="text"
 									placeholder='Advantages'
 									defaultValue={field.value}
+									onChange={(e) => handleInputChange(field.id, e.target.value)}
 								/>
-								<Image alt='Basket' src={basket} onClick={() => remove(index)} />
+								<Image alt='Basket' src={basket} onClick={() => handleRemoveField(field.id)} />
 							</div>
 						))}
-						<button type="button" onClick={() => append({ id: fields.length + 1, value: '' })}>
+						<button type="button" onClick={handleAddField}>
 							+
 						</button>
 					</div>
 					<div className={styles.checkbox}>
 						<p>Checkbox группа</p>
 						<label>
-							<input {...register('checkbox')} type="checkbox" />
+							<input {...register('advantages.checkbox')} type="checkbox" />
 							1
 						</label>
 						<label>
-							<input {...register('checkbox')} type="checkbox" />
+							<input {...register('advantages.checkbox')} type="checkbox" />
 							2
 						</label>
 						<label>
-							<input {...register('checkbox')} type="checkbox" />
+							<input {...register('advantages.checkbox')} type="checkbox" />
 							3
 						</label>
 					</div>
 					<div className={styles.checkbox}>
 						<p>Radio группа</p>
 						<label>
-							<input {...register('radio')} value="1" type="radio" />
+							<input {...register('advantages.radio')} value="1" type="radio" />
 							1
 						</label>
 						<label>
-							<input {...register('radio')} value="2" type="radio" />
+							<input {...register('advantages.radio')} value="2" type="radio" />
 							2
 						</label>
 						<label>
-							<input {...register('radio')} value="3" type="radio" />
+							<input {...register('advantages.radio')} value="3" type="radio" />
 							3
 						</label>
 					</div>

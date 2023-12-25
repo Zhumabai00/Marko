@@ -5,48 +5,53 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import Select from 'react-select'
 import { useRouter } from 'next/navigation'
 import { Buttons } from '@/components/Buttons'
+import { useAppDispatch, useAppSelector } from '@/hooks'
+import { setFormData } from '@/store/reducers'
 interface MyForm {
-	tel: string
-	email: string
+	nickName: string
 	name: string
 	fullname: string
 	sex: { value: string; label: string } | string;
 }
+interface IPerson {
+	personalData: MyForm
+}
 
 const Quiz1 = () => {
+	const dispatch = useAppDispatch()
+	const formData = useAppSelector((state) => state.formReducer)
 	const router = useRouter();
-	const { register, handleSubmit, control } = useForm<MyForm>({ defaultValues: {} })
+	const { register, handleSubmit, control } = useForm<IPerson>({ defaultValues: { personalData: formData.personalData } })
 
 
-	const submit: SubmitHandler<MyForm> = async (data) => {
-		router.forward()
+	const submit: SubmitHandler<IPerson> = async (data) => {
+		dispatch(setFormData(data))
 		router.push('/quizzes/2')
-		console.log(data);
-
 	}
 	const options = [
 		{ value: 'мужской', label: 'мужской' },
 		{ value: 'женский', label: 'женский' },
 	];
+
 	return (
 		<form onSubmit={handleSubmit(submit)}>
 			<div className={styles.contactForm}>
 				<div className={styles.inputs}>
 					<div className={styles.label}>
 						<p>Никнейм</p>
-						<input {...register('tel', { required: true })} placeholder='Your nickname' type="text" />
+						<input {...register(`personalData.nickName` as const, { required: true })} placeholder='Your nickname' type="text" />
 					</div>
 					<div className={styles.label}>
 						<p>Имя</p>
-						<input {...register('name')} placeholder='Your name' type="text" />
+						<input {...register('personalData.name' as const)} placeholder='Your name' type="text" />
 					</div>
 					<div className={styles.label}>
 						<p>Фамилия</p>
-						<input {...register('fullname')} placeholder='Your full name' type="text" />
+						<input {...register('personalData.fullname' as const)} placeholder='Your full name' type="text" />
 					</div>
 					<div className={styles.label}>
 						<Controller
-							name="sex"
+							name="personalData.sex"
 							control={control}
 							defaultValue=""
 							render={({ field }) => (

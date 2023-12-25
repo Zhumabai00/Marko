@@ -3,23 +3,27 @@ import React from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import styles from '../../page.module.css'
 import { Buttons } from '@/components/Buttons';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { setFormData } from '@/store/reducers';
 
 interface FormData {
 	about: string;
 }
 
 const Quiz3: React.FC = () => {
+	const dispatch = useAppDispatch()
+	const formData = useAppSelector((state) => state.formReducer)
+
 	const {
 		control,
 		handleSubmit,
-		register,
 	} = useForm<FormData>({
-		defaultValues: {},
+		defaultValues: { about: formData.about },
 	});
 
+	console.log(formData);
 	const submit: SubmitHandler<FormData> = async (data) => {
-		console.log(data);
-
+		dispatch(setFormData(data))
 	}
 
 	return (

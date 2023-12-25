@@ -146,13 +146,9 @@
 }
 
 .dot {
-	width: 16px;
-	height: 16px;
-	flex-shrink: 0;
 	position: relative;
 
 	border-radius: 100px;
-	background: #a6a6a6;
 
 	color: #666;
 	text-align: center;
