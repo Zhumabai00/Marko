@@ -211,6 +211,11 @@
 	color: #333;
 	font-weight: 500;
 }
+.label > span {
+	color: rgba(0, 0, 0, 0.48);
+	font-size: 12px;
+	line-height: 16px;
+}
 .label > input,
 .label > textarea {
 	border-radius: 4px;

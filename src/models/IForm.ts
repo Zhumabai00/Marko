@@ -1,6 +1,6 @@
 export interface IContact {
 	tel: string,
-	email: string
+	email: string,
 }
 export interface IAdvan {
 	checkbox: string
@@ -11,14 +11,14 @@ export interface IAdvan {
 export interface IPersonal {
 	nickName: string
 	name: string
-	fullname: string
+	surname: string
 	sex: { value: string; label: string } | string;
 }
 export interface FormState {
 	contacts: IContact;
-	advantages: IAdvan | string
+	advantages: IAdvan
 	about: string
-	personalData: IPersonal | string
+	personalData: IPersonal
 }
 export interface InputField {
 	id: number;

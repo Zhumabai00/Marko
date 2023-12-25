@@ -10,12 +10,10 @@ import { useAppDispatch, useAppSelector } from '@/hooks'
 import { addInputField, removeInputField, setFormData, updateInputValue } from '@/store/reducers'
 import { IAdvan } from '@/models/IForm'
 
-
 interface FormData {
-	advantages: IAdvan | string
+	advantages: IAdvan
 	inputFields: { id: number; value: string }[];
 }
-
 
 const Quiz2 = () => {
 	const dispatch = useAppDispatch()

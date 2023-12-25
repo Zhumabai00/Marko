@@ -62,6 +62,7 @@ const Quiz3: React.FC = () => {
 						name="about"
 						control={control}
 						defaultValue=""
+						rules={{ required: true }}
 						render={({ field }) => (
 							<textarea
 								{...field}

@@ -7,21 +7,48 @@ import { useRouter } from 'next/navigation'
 import { Buttons } from '@/components/Buttons'
 import { useAppDispatch, useAppSelector } from '@/hooks'
 import { setFormData } from '@/store/reducers'
-interface MyForm {
-	nickName: string
-	name: string
-	fullname: string
-	sex: { value: string; label: string } | string;
-}
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { IPersonal } from '@/models/IForm'
+
 interface IPerson {
-	personalData: MyForm | string
+	personalData: IPersonal
 }
+
+const schema: yup.ObjectSchema<IPerson> = yup.object({
+	personalData: yup.object({
+		nickName: yup
+			.string()
+			.required('NickName is required')
+			.min(2, 'Min 2 characters')
+			.max(30, 'Max 30 characters')
+			.matches(/^[a-zA-Z0-9]+$/, 'Only letters and numbers are allowed'),
+
+		name: yup
+			.string()
+			.required('Name is required')
+			.matches(/^[a-zA-Z]+$/, 'Only letters are allowed')
+			.max(50, 'Max 30 characters'),
+
+		surname: yup
+			.string()
+			.required('Surname is required')
+			.matches(/^[a-zA-Z]+$/, 'Only letters are allowed')
+			.max(50, 'Max 30 characters'),
+
+		sex: yup.object().shape({
+			label: yup.string().required('Option is required'),
+			value: yup.string().required('Option is required'),
+		}),
+	}),
+});
 
 const Quiz1 = () => {
 	const dispatch = useAppDispatch()
 	const formData = useAppSelector((state) => state.formReducer)
 	const router = useRouter();
-	const { register, handleSubmit, control } = useForm<IPerson>({ defaultValues: { personalData: formData.personalData } })
+	const { register, handleSubmit, control, formState: { errors } } = useForm<IPerson>(
+		{ mode: "onChange", resolver: yupResolver(schema), defaultValues: { personalData: formData.personalData } })
 
 
 	const submit: SubmitHandler<IPerson> = async (data) => {
@@ -29,8 +56,8 @@ const Quiz1 = () => {
 		router.push('/quizzes/2')
 	}
 	const options = [
-		{ value: 'мужской', label: 'мужской' },
-		{ value: 'женский', label: 'женский' },
+		{ value: 'man', label: 'man' },
+		{ value: 'woman', label: 'woman' },
 	];
 
 	return (
@@ -39,31 +66,33 @@ const Quiz1 = () => {
 				<div className={styles.inputs}>
 					<div className={styles.label}>
 						<p>Никнейм</p>
-						<input {...register(`personalData.nickName` as const, { required: true })} placeholder='Your nickname' type="text" />
+						<input {...register(`personalData.nickName`, { required: true })} placeholder='Your nickname' type="text" />
+						<span>{errors.personalData?.nickName?.message}</span>
 					</div>
 					<div className={styles.label}>
 						<p>Имя</p>
-						<input {...register('personalData.name' as const)} placeholder='Your name' type="text" />
+						<input {...register('personalData.name', { required: true })} placeholder='Your name' type="text" />
+						<span>{errors.personalData?.name?.message}</span>
 					</div>
 					<div className={styles.label}>
 						<p>Фамилия</p>
-						<input {...register('personalData.fullname' as const)} placeholder='Your full name' type="text" />
+						<input {...register('personalData.surname', { required: true })} placeholder='Your full name' type="text" />
+						<span>{errors.personalData?.surname?.message}</span>
 					</div>
 					<div className={styles.label}>
 						<Controller
 							name="personalData.sex"
 							control={control}
-							defaultValue=""
 							render={({ field }) => (
 								<Select
 									className={styles.select}
-
 									{...field}
 									options={options}
 									instanceId={useId()}
 								/>
 							)}
 						/>
+						<span>{errors.personalData?.sex?.message}</span>
 					</div>
 				</div>
 			</div>

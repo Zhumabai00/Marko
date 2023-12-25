@@ -20,7 +20,7 @@
 				"tel": "234567tel"
 			},
 			"personalData": {
-				"fullname": "Asanaalyev",
+				"surname": "Asanaalyev",
 				"name": "name",
 				"nickName": "nick",
 				"sex": {
@@ -49,7 +49,7 @@
 				"tel": "234567tel"
 			},
 			"personalData": {
-				"fullname": "Asanaalyev",
+				"surname": "Asanaalyev",
 				"name": "name",
 				"nickName": "nick",
 				"sex": {

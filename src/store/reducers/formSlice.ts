@@ -6,7 +6,7 @@ const initialState: FormState = {
 	about: '',
 	contacts: { tel: '', email: '' },
 	advantages: { inputs: [{ id: 1, value: '' }], checkbox: '', radio: '' },
-	personalData: { nickName: '', name: '', fullname: '', sex: '' }
+	personalData: { nickName: '', name: '', surname: '', sex: { label: '', value: '' } }
 };
 
 const formSlice = createSlice({
@@ -14,7 +14,6 @@ const formSlice = createSlice({
 	initialState,
 	reducers: {
 		setFormData: (state, action) => {
-			// state.formData = action.payload
 			return { ...state, ...action.payload };
 		},
 		submitForm: (state, action) => {
