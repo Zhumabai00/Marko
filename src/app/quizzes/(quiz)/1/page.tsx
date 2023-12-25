@@ -56,8 +56,8 @@ const Quiz1 = () => {
 		router.push('/quizzes/2')
 	}
 	const options = [
-		{ value: 'man', label: 'man' },
-		{ value: 'woman', label: 'woman' },
+		{ value: 'man', label: 'мужской' },
+		{ value: 'woman', label: 'женский' },
 	];
 
 	return (
@@ -80,6 +80,7 @@ const Quiz1 = () => {
 						<span>{errors.personalData?.surname?.message}</span>
 					</div>
 					<div className={styles.label}>
+						<p>Пол</p>
 						<Controller
 							name="personalData.sex"
 							control={control}
