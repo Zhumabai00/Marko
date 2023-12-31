@@ -14,11 +14,16 @@ export interface IPersonal {
 	surname: string
 	sex: { value: string; label: string } | string;
 }
-export interface FormState {
+
+export interface IData {
+	about: string
 	contacts: IContact;
 	advantages: IAdvan
-	about: string
 	personalData: IPersonal
+}
+export interface FormState {
+	data: IData,
+	inputstore: any
 }
 export interface InputField {
 	id: number;
