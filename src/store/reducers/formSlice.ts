@@ -1,24 +1,14 @@
 import { FormState } from '@/models/IForm';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
+const defauldData = {
+	about: '',
+	contacts: { tel: '', email: '' },
+	advantages: { inputs: [{ id: 1, value: '' }], checkbox: '', radio: '' },
+	personalData: { nickName: '', name: '', surname: '', sex: { label: '', value: '' } }
+}
 const initialState: FormState = {
-	data: {
-		about: '',
-		contacts: { tel: '', email: '' },
-		advantages: { inputs: [{ id: 1, value: '' }], checkbox: '', radio: '' },
-		personalData: { nickName: '', name: '', surname: '', sex: { label: '', value: '' } }
-	},
-	inputstore: {
-		about: '',
-		tel: '',
-		email: '',
-		nickName: '',
-		name: '',
-		surname: '',
-		sex: { label: '', value: '' },
-		personalData: { nickName: '', name: '', surname: '', sex: { label: '', value: '' } }
-	},
+	data: defauldData
 };
 
 const formSlice = createSlice({
@@ -29,12 +19,12 @@ const formSlice = createSlice({
 		setFormData: (state, action) => {
 			state.data = { ...state.data, ...action.payload }
 		},
-		handleChange: (state, action) => {
-			state.inputstore = { ...state.inputstore, ...action.payload }
+		clearSubmit: (state, action) => {
+			state.data = defauldData
 		},
 	},
 });
 
-export const { setFormData, handleChange } = formSlice.actions;
+export const { setFormData, clearSubmit } = formSlice.actions;
 
 export default formSlice.reducer;

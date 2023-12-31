@@ -23,7 +23,6 @@ export interface IData {
 }
 export interface FormState {
 	data: IData,
-	inputstore: any
 }
 export interface InputField {
 	id: number;

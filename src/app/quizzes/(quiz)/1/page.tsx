@@ -6,7 +6,7 @@ import Select from 'react-select'
 import { useRouter } from 'next/navigation'
 import { Buttons } from '@/components/Buttons'
 import { useAppDispatch, useAppSelector } from '@/hooks'
-import { setFormData, handleChange } from '@/store/reducers'
+import { setFormData } from '@/store/reducers'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { IPersonal } from '@/models/IForm'
@@ -16,7 +16,6 @@ interface IPerson {
 }
 
 const schema: yup.ObjectSchema<IPersonal> = yup.object({
-	// personalData: yup.object({
 	nickName: yup
 		.string()
 		.required('NickName is required')
@@ -40,12 +39,11 @@ const schema: yup.ObjectSchema<IPersonal> = yup.object({
 		label: yup.string().required('Option is required'),
 		value: yup.string().required('Option is required'),
 	}),
-	// }),
 });
 
 const Quiz1 = () => {
 	const dispatch = useAppDispatch()
-	const { data, inputstore } = useAppSelector((state) => state.formReducer)
+	const { data } = useAppSelector((state) => state.formReducer)
 	const router = useRouter();
 	const { register, handleSubmit, control, formState: { errors } } = useForm<IPersonal>(
 		{ mode: "onChange", resolver: yupResolver(schema), defaultValues: {} })
@@ -56,10 +54,6 @@ const Quiz1 = () => {
 		router.push('/quizzes/2')
 	}
 
-	const changeHandle = (e: any) => {
-		dispatch(handleChange({ [e.target.name]: e.target.value })),
-			console.log(inputstore)
-	}
 	const options = [
 		{ value: 'man', label: 'мужской' },
 		{ value: 'woman', label: 'женский' },
@@ -71,17 +65,17 @@ const Quiz1 = () => {
 				<div className={styles.inputs}>
 					<div className={styles.label}>
 						<p>Никнейм</p>
-						<input {...register(`nickName`, { required: true })} onChange={changeHandle} value={inputstore.nickName} placeholder='Your nickname' type="text" />
+						<input {...register(`nickName`, { required: true })} defaultValue={data.personalData.nickName} placeholder='Your nickname' type="text" />
 						<span>{errors.nickName?.message}</span>
 					</div>
 					<div className={styles.label}>
 						<p>Имя</p>
-						<input {...register('name', { required: true })} onChange={changeHandle} value={inputstore.name} placeholder='Your name' type="text" />
+						<input {...register('name', { required: true })} defaultValue={data.personalData.name} placeholder='Your name' type="text" />
 						<span>{errors.name?.message}</span>
 					</div>
 					<div className={styles.label}>
 						<p>Фамилия</p>
-						<input {...register('surname', { required: true })} onChange={changeHandle} value={inputstore.surname} placeholder='Your full name' type="text" />
+						<input {...register('surname', { required: true })} defaultValue={data.personalData.surname} placeholder='Your full name' type="text" />
 						<span>{errors.surname?.message}</span>
 					</div>
 					<div className={styles.label}>

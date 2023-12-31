@@ -6,8 +6,6 @@ const rootReducer = combineReducers({
 	inputReducer,
 	formReducer,
 })
-console.log(formReducer);
-
 
 export const setupStore = () => {
 	return configureStore({

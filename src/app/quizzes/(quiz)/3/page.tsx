@@ -9,14 +9,11 @@ import { ApolloError, useMutation } from '@apollo/client';
 import { CREATE_USER } from '@/apollos/queries';
 import Modal from '@/components/Modal';
 import { IData } from '@/models/IForm';
-
-interface FormData {
-	about: string;
-}
+import { clearSubmit } from '@/store/reducers/formSlice';
 
 const Quiz3: React.FC = () => {
 	const dispatch = useAppDispatch()
-	const { data } = useAppSelector((state) => state.formReducer)
+	const formData = useAppSelector((state) => state.formReducer)
 	const [isModal, setModal] = useState<boolean>(false)
 	const [isError, setError] = useState<boolean>(false)
 
@@ -24,7 +21,7 @@ const Quiz3: React.FC = () => {
 		control,
 		handleSubmit,
 	} = useForm<IData>({
-		defaultValues: { about: data.about },
+		defaultValues: { about: formData.data.about },
 	});
 
 
@@ -34,13 +31,13 @@ const Quiz3: React.FC = () => {
 		try {
 			await createUser({
 				variables: {
-					about: data.about,
-					advantages: data.advantages,
-					contacts: data.contacts,
-					personalData: data.personalData
+					about: formData.data.about,
+					advantages: formData.data.advantages,
+					contacts: formData.data.contacts,
+					personalData: formData.data.personalData
 				},
 			})
-			console.log('User created successfully!', data);
+			console.log('User created successfully!', formData);
 		} catch (err) {
 			if (err instanceof ApolloError) {
 				console.error('Apollo Error:', err.message);
@@ -50,10 +47,13 @@ const Quiz3: React.FC = () => {
 				setError(true)
 			}
 		}
+		await dispatch(clearSubmit({}))
 		setError(false)
 		setModal(true)
 	}
-
+	if (error) {
+		return <h1>Error... ({error.message})</h1>
+	}
 	return (
 		<form onSubmit={handleSubmit(submit)}>
 			<div className={styles.inputs}>
@@ -62,8 +62,8 @@ const Quiz3: React.FC = () => {
 					<Controller
 						name="about"
 						control={control}
-						defaultValue=""
 						rules={{ required: true }}
+						defaultValue={formData.data.about}
 						render={({ field }) => (
 							<textarea
 								{...field}
